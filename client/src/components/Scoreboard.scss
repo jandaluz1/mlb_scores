@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#scoreboard {
+  width: 350px;
+  height: 200px;
+  margin: 25px auto;
+  border: 2px solid black;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 80% 20%;
+  grid-template-areas: 'teams field-box' 'info outs';
+  transform: scale(0.5);
+}
+
+#teams {
+  height: 100%;
+  grid-area: teams;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: 'away away-score' 'home home-score';
+  background-color: #f7f7f7;
+  .team {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+  #away {
+    grid-area: away;
+    border-bottom: 1px solid black;
+  }
+  #home {
+    grid-area: home;
+    border-top: 1px solid black;
+  }
+  #away-score {
+    grid-area: away-score;
+    border-bottom: 1px solid black;
+  }
+  #home-score {
+    grid-area: home-score;
+    border-top: 1px solid black;
+  }
+}
+
+#field-box {
+  height: 100%;
+  grid-area: field-box;
+  border-left: 2px solid black;
+  background-color: #f7f7f7;
+
+  #field {
+    position: relative;
+    height: 120px;
+    width: 120px;
+    border: 1px solid black;
+    margin: 1em auto;
+    transform: scale(0.8) rotate(45deg);
+    background-color: #1fd319;
+  }
+
+  .base {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    background-color: white;
+  }
+
+  #first-base {
+    top: 0;
+    right: 0;
+  }
+
+  #second-base {
+    top: 0;
+    left: 0;
+  }
+
+  #third-base {
+    bottom: 0;
+    left: 0;
+  }
+
+  .on-base {
+    background-color: #5900ff;
+  }
+}
+
+#info {
+  height: 100%;
+  background-color: yellow;
+  grid-area: info;
+  border-top: 1px solid black;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+#outs {
+  grid-area: outs;
+  background-color: yellow;
+  border-top: 1px solid black;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
