@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Scoreboard.scss';
 
 const game = {
@@ -389,38 +389,89 @@ const game = {
   venue_w_chan_loc: 'USIL0225'
 };
 
-const Scoreboard = props => {
-  console.log(game);
+class Scoreboard extends Component {
+  firstBase = React.createRef();
+  secondBase = React.createRef();
+  thirdBase = React.createRef();
 
-  return (
-    <div id="scoreboard">
-      <div id="teams">
-        <div className="team" id="away">
-          {game.away_name_abbrev}
+  resetBases = () => {
+    this.firstBase.current.classList.remove('on-base');
+    this.secondBase.current.classList.remove('on-base');
+    this.thirdBase.current.classList.remove('on-base');
+  };
+
+  updateBases = runners => {
+    this.resetBases();
+    //need to find out the status for runners on base
+    //these cases are just a guess
+    switch (runners.status) {
+      case '1':
+        this.firstBase.current.classList.add('on-base');
+        break;
+      case '2':
+        this.secondBase.current.classList.add('on-base');
+        break;
+      case '3':
+        this.thirdBase.current.classList.add('on-base');
+        break;
+      case '4':
+        this.firstBase.current.classList.add('on-base');
+        this.secondBase.current.classList.add('on-base');
+        break;
+      case '5':
+        this.secondBase.current.classList.add('on-base');
+        this.thirdBase.current.classList.add('on-base');
+        break;
+      case '6':
+        this.firstBase.current.classList.add('on-base');
+        this.thirdBase.current.classList.add('on-base');
+        break;
+      case '7':
+        this.firstBase.current.classList.add('on-base');
+        this.secondBase.current.classList.add('on-base');
+        this.thirdBase.current.classList.add('on-base');
+        break;
+      default:
+        break;
+    }
+  };
+
+  componentDidMount() {
+    // console.log(this.firstBase.current.classList);
+    const { runners_on_base } = game;
+    this.updateBases(runners_on_base);
+  }
+  render() {
+    return (
+      <div id="scoreboard">
+        <div id="teams">
+          <div className="team" id="away">
+            {game.away_name_abbrev}
+          </div>
+          <div className="team" id="away-score">
+            {game.linescore.r.away}
+          </div>
+          <div className="team" id="home">
+            {game.home_name_abbrev}
+          </div>
+          <div className="team" id="home-score">
+            {game.linescore.r.home}
+          </div>
         </div>
-        <div className="team" id="away-score">
-          {game.linescore.r.away}
+        <div id="field-box">
+          <div id="field">
+            <div className="base" id="first-base" ref={this.firstBase} />
+            <div className="base" id="second-base" ref={this.secondBase} />
+            <div className="base" id="third-base" ref={this.thirdBase} />
+          </div>
         </div>
-        <div className="team" id="home">
-          {game.home_name_abbrev}
+        <div id="info">
+          {game.status.top_inning === 'Y' ? 'Top' : 'Bot'} {game.status.inning}
         </div>
-        <div className="team" id="home-score">
-          {game.linescore.r.home}
-        </div>
+        <div id="outs">{game.status.o} out</div>
       </div>
-      <div id="field-box">
-        <div id="field">
-          <div className="base" id="first-base" />
-          <div className="base" id="second-base" />
-          <div className="base" id="third-base" />
-        </div>
-      </div>
-      <div id="info">
-        {game.status.top_inning === 'Y' ? 'Top' : 'Bot'} {game.status.inning}
-      </div>
-      <div id="outs">{game.status.o} out</div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Scoreboard;
