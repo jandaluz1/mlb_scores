@@ -402,37 +402,14 @@ class Scoreboard extends Component {
 
   updateBases = runners => {
     this.resetBases();
-    //need to find out the status for runners on base
-    //these cases are just a guess
-    switch (runners.status) {
-      case '1':
-        this.firstBase.current.classList.add('on-base');
-        break;
-      case '2':
-        this.secondBase.current.classList.add('on-base');
-        break;
-      case '3':
-        this.thirdBase.current.classList.add('on-base');
-        break;
-      case '4':
-        this.firstBase.current.classList.add('on-base');
-        this.secondBase.current.classList.add('on-base');
-        break;
-      case '5':
-        this.secondBase.current.classList.add('on-base');
-        this.thirdBase.current.classList.add('on-base');
-        break;
-      case '6':
-        this.firstBase.current.classList.add('on-base');
-        this.thirdBase.current.classList.add('on-base');
-        break;
-      case '7':
-        this.firstBase.current.classList.add('on-base');
-        this.secondBase.current.classList.add('on-base');
-        this.thirdBase.current.classList.add('on-base');
-        break;
-      default:
-        break;
+    if ('runner_on_1b' in runners) {
+      this.firstBase.current.classList.add('on-base');
+    }
+    if ('runner_on_2b' in runners) {
+      this.secondBase.current.classList.add('on-base');
+    }
+    if ('runner_on_3b' in runners) {
+      this.thirdBase.current.classList.add('on-base');
     }
   };
 
