@@ -5,22 +5,16 @@ import Scoreboard from './Scoreboard';
 export default class GameDay extends Component {
   state = { games: [] };
   async componentDidMount() {
-    const { data } = await axios.get(
-      'http://gd2.mlb.com/components/game/mlb/year_2019/month_04/day_09/master_scoreboard.json'
-    );
-    const games = data.data.games.game;
-    this.setState({ games });
-    this.poll();
+    const { data } = await axios.get('/api/poll');
+    this.setState({ games: data });
+    await this.poll();
   }
 
   poll() {
     setTimeout(async () => {
-      const { data } = await axios.get(
-        'http://gd2.mlb.com/components/game/mlb/year_2019/month_04/day_09/master_scoreboard.json'
-      );
-      const games = data.data.games.game;
-      console.log('POLLING', games);
-      this.setState({ games });
+      console.log('POLLING');
+      const { data } = await axios.get('/api/poll');
+      this.setState({ games: data });
       this.poll();
     }, 15000);
   }

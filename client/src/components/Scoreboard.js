@@ -476,6 +476,7 @@ class Scoreboard extends Component {
           )}
           {game.status.status === 'Warmup' && <span>Warmup</span>}
           {game.status.status === 'Final' && <span>Final</span>}
+          {game.status.status === 'Game Over' && <span>Final</span>}
         </div>
         <div id="outs">
           {game.status.status === 'In Progress' && (
