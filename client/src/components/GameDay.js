@@ -39,9 +39,13 @@ export default class GameDay extends Component {
     return (
       <div className="game-day">
         <h1>GameDay</h1>
-        <GameContainer status="live" games={liveGames} />
-        <GameContainer status="upcoming" games={upcomingGames} />
-        <GameContainer status="final" games={finals} />
+        {liveGames.length > 0 && (
+          <GameContainer status="live" games={liveGames} />
+        )}
+        {upcomingGames.length > 0 && (
+          <GameContainer status="upcoming" games={upcomingGames} />
+        )}
+        {finals.length > 0 && <GameContainer status="final" games={finals} />}
       </div>
     );
   }
