@@ -7,13 +7,12 @@
 #scoreboard {
   width: 350px;
   height: 200px;
-  margin: 25px auto;
   border: 2px solid black;
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: 80% 20%;
   grid-template-areas: 'teams field-box' 'info outs';
-  transform: scale(0.5);
+  transform: scale(0.8);
 }
 
 #teams {
