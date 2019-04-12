@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Scoreboard from './Scoreboard';
+import GameContainer from './GameContainer';
+import './GameDay.scss';
 
 export default class GameDay extends Component {
   state = { games: [] };
@@ -20,12 +21,27 @@ export default class GameDay extends Component {
   }
   render() {
     const { games } = this.state;
-    // console.log(games);
+    const liveGames = games.filter(
+      game =>
+        game.status.status === 'In Progress' || game.status.status === 'Warmup'
+    );
+    const upcomingGames = games.filter(
+      game =>
+        game.status.status === 'Pre-Game' || game.status.status === 'Preview'
+    );
+    const finals = games.filter(
+      game =>
+        game.status.status === 'Final' ||
+        game.status.status === 'Game Over' ||
+        game.status.status === 'Postponed'
+    );
+    console.log(liveGames, upcomingGames, finals);
     return (
-      <div>
+      <div className="game-day">
         <h1>GameDay</h1>
-        {games[0] &&
-          games.map(game => <Scoreboard game={game} key={game.id} />)}
+        <GameContainer status="live" games={liveGames} />
+        <GameContainer status="upcoming" games={upcomingGames} />
+        <GameContainer status="final" games={finals} />
       </div>
     );
   }
