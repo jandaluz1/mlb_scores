@@ -6,11 +6,13 @@ const GameContainer = props => {
   const { games } = props;
   const { status } = props;
   return (
-    <div className="games">
+    <div>
       <h2>{status}</h2>
-      {games.map(game => (
-        <Scoreboard game={game} key={game.id} />
-      ))}
+      <div className="games">
+        {games.map(game => (
+          <Scoreboard game={game} key={game.id} />
+        ))}
+      </div>
     </div>
   );
 };
