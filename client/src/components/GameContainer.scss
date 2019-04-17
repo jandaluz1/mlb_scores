@@ -1,3 +1,4 @@
+@import './mixins';
 * {
   margin: 0;
   box-sizing: border-box;
@@ -13,4 +14,17 @@ h2 {
 
 #scoreboard {
   margin: 0 auto;
+}
+
+.games {
+  @include for-tablet {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 'game . game';
+  }
+  @include for-desktop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
