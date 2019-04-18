@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import GameContainer from './GameContainer';
-import './GameDay.scss';
+import '../main.scss';
 
 export default class GameDay extends Component {
   state = { games: [] };
@@ -38,7 +38,7 @@ export default class GameDay extends Component {
     console.log(liveGames, upcomingGames, finals);
     return (
       <div className="game-day">
-        <h1>GameDay</h1>
+        {/* <h1>GameDay</h1> */}
         {liveGames.length > 0 && (
           <GameContainer status="live" games={liveGames} />
         )}

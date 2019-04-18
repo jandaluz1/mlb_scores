@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Scoreboard.scss';
+import '../main.scss';
 
 class Scoreboard extends Component {
   firstBase = React.createRef();
