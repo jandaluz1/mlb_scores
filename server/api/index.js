@@ -28,6 +28,7 @@ router.get('/poll', redisMiddleware, async (req, res) => {
   const year = datetime.getFullYear().toString();
   const month = (0 + (datetime.getMonth() + 1).toString()).slice(-2);
   const day = datetime.getDate().toString();
+  console.log(datetime);
 
   const { data } = await mlbApi.get(
     `/year_${year}/month_${month}/day_${day}/master_scoreboard.json`
