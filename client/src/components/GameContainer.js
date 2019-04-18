@@ -1,6 +1,6 @@
 import React from 'react';
 import Scoreboard from './Scoreboard';
-import './GameContainer.scss';
+import '../main.scss';
 
 const GameContainer = props => {
   const { games } = props;

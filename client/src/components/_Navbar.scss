@@ -1,0 +1,102 @@
+$background: #eaeaea;
+
+nav {
+  position: static;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
+  padding: 0 15px;
+  margin-bottom: 0.5em;
+}
+nav h1 {
+  font-size: 2em;
+}
+
+.nav-links {
+  position: absolute;
+  z-index: 10;
+  top: 6vh;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 94vh;
+  width: 50%;
+  list-style: none;
+  background-color: white;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform 300ms ease-in;
+}
+
+.nav-links li {
+  border-bottom: 2px solid black;
+  width: 100%;
+  text-align: center;
+  margin: 1em;
+  padding-bottom: 1em;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+#burger-check {
+  display: none;
+}
+
+#burger {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 10%;
+  // margin-top: 0.5em;
+  // transform: scale(1.1);
+}
+
+#burger div {
+  width: 25px;
+  height: 3px;
+  margin: 4px 0;
+  background-color: black;
+}
+
+@include keyframes(slideIn) {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@include keyframes(slideOut) {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@mixin slideIn {
+  @include animate(slideIn, 300ms, 1, normal);
+}
+
+@mixin slideOut {
+  @include animate(slideOut, 300ms, 1, normal);
+}
+
+#burger-check:checked ~ .nav-links {
+  @include slideIn;
+}
+
+#burger-check ~ .nav-links {
+  @include slideOut;
+}
